@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div id="page" class="container">
     <error-component v-if="error" :error="error"></error-component>
     <success-component v-if="success" :success="success"></success-component>
     <loading-component :loading="loading"></loading-component>
@@ -120,7 +120,7 @@
       </div>
     </div>
     <div v-else class="container">
-      <h1 class="text-uppercase text-center">Offre introuvable</h1>
+      <h1 class="text-uppercase text-center">🔍 Recherche de l'offre ...</h1>
     </div>
   </div>
 </template>
@@ -226,4 +226,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#page {
+  min-height: 70vh;
+}
+</style>
