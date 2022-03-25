@@ -171,7 +171,10 @@ export default {
           this.success = "Modification sur le compte ok.";
         }
       } catch (error) {
-        this.errors = "Impossible de modifier l'état de l'utilisateur.";
+        console.log(error.detail);
+        this.error =
+          "Impossible de modifier l'état de l'utilisateur. \n" +
+          error.response.data.detail;
       }
     },
     async getEstablishmentList() {
@@ -189,7 +192,6 @@ export default {
   },
   async created() {
     //récuperation de l'utilisateur
-
     await this.getTheUser();
 
     //récuperation de la liste des établissements
