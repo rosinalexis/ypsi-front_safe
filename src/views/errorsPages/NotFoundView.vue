@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h1 class="mb-3 text-center text-uppercase">404 PAGE NOT FOUND</h1>
+  <div class="container page">
+    <h1 class="mb-3 text-center text-uppercase">😓 404 PAGE NOT FOUND</h1>
   </div>
 </template>
 

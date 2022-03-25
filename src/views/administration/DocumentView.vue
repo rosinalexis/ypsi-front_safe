@@ -1,5 +1,5 @@
 <template>
-  <div id="documentPage" class="container">
+  <div class="container page">
     <div class="row">
       <div class="my-2 col-12">
         <error-component v-if="errors" :error="errors"></error-component>
@@ -165,8 +165,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#documentPage {
-  min-height: 70vh;
-}
-</style>
+<style scoped></style>

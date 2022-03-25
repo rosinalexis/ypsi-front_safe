@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container page">
     <error-component v-if="error" :error="error"></error-component>
     <success-component v-if="success" :success="success"></success-component>
     <h1 class="my-2 text-uppercase text-center">Liste des catégories</h1>

@@ -1,5 +1,5 @@
 <template>
-  <div id="UserProfile" class="container">
+  <div class="container page">
     <error-component v-if="errors" :error="errors"></error-component>
     <h1 class="my-5 text-uppercase text-center">Mon profil</h1>
 
@@ -138,8 +138,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#UserProfile {
-  height: 100vh;
-}
-</style>
+<style scoped></style>

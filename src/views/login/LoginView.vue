@@ -1,6 +1,6 @@
 <template>
-  <div id="home" class="row">
-    <div class="col-lg-4 mx-auto">
+  <div class="page">
+    <div class="my-5 mx-auto col-lg-4">
       <form @submit.prevent="handleSubmit">
         <error-component v-if="error" :error="error"></error-component>
 
@@ -83,8 +83,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#home {
-  height: 80vh;
-}
-</style>
+<style scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="height: 80vh">
+  <div class="container page">
     <error-component v-if="errors" :error="errors"></error-component>
     <success-component v-if="success" :success="success"></success-component>
     <h1 class="my-2 text-uppercase text-center">Liste des établissements</h1>

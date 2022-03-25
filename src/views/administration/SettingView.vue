@@ -1,5 +1,5 @@
 <template>
-  <div id="settings" class="container">
+  <div class="container page">
     <h1 class="text-uppercase text-center">Configuration de l'application</h1>
     <error-component v-if="errors" :error="errors"></error-component>
     <success-component v-if="success" :success="success"></success-component>
@@ -779,8 +779,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#settings {
-  min-height: 75vh;
-}
-</style>
+<style scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="page" class="container">
+  <div class="container page">
     <error-component v-if="error" :error="error"></error-component>
     <success-component v-if="success" :success="success"></success-component>
     <loading-component :loading="loading"></loading-component>
@@ -226,8 +226,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#page {
-  min-height: 70vh;
-}
-</style>
+<style scoped></style>

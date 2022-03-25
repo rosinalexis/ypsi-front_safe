@@ -1,5 +1,5 @@
 <template>
-  <div id="contactsDiv" class="container">
+  <div class="container page">
     <error-component v-if="errors" :error="errors"></error-component>
     <success-component v-if="success" :success="success"></success-component>
     <h1 class="my-2 text-uppercase text-center">Liste des candidatures</h1>
@@ -186,8 +186,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#contactsDiv {
-  min-height: 80vh;
-}
-</style>
+<style scoped></style>

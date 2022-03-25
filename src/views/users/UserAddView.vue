@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container page">
     <div v-if="this.user.roles[0] === 'ROLE_ADMIN'" class="container">
       <error-component v-if="error" :error="error"></error-component>
       <success-component v-if="success" :success="success"></success-component>

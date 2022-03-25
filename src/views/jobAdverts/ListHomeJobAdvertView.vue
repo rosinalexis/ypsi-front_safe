@@ -1,5 +1,5 @@
 <template>
-  <div id="home" class="my-5 container">
+  <div class="my-5 container page">
     <error-component v-if="errors" :error="errors"></error-component>
 
     <h1 class="my-2 text-uppercase text-center">
@@ -85,8 +85,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#home {
-  min-height: 80vh;
-}
-</style>
+<style scoped></style>
