@@ -45,7 +45,7 @@
                   <a
                     v-if="contactApp.cvUrl"
                     :href="
-                      'https://127.0.0.1:8000/images/contacts/' +
+                      'https://localhost:8000/images/contacts/' +
                       contactApp.cvUrl
                     "
                     target="_blank"
@@ -58,7 +58,7 @@
                   <a
                     v-if="contactApp.coverLetterUrl"
                     :href="
-                      'https://127.0.0.1:8000/images/contacts/' +
+                      'https://localhost:8000/images/contacts/' +
                       contactApp.coverLetterUrl
                     "
                     target="_blank"

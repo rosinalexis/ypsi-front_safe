@@ -11,8 +11,9 @@
 
         <div class="mb-5">
           <a
-            href="https://127.0.0.1:8000/api/docs?ui=re_doc"
+            href="https://api-cloud-rh.ypsi.dev/api/docs?ui=re_doc"
             class="btn btn-primary px-4 text-white"
+            disabled
             >Utilisation
           </a>
           <a href="https://www.ypsi.fr/" class="mx-2 btn btn-warning text-white"

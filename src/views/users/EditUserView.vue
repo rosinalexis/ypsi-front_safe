@@ -171,7 +171,6 @@ export default {
           this.success = "Modification sur le compte ok.";
         }
       } catch (error) {
-        console.log(error.detail);
         this.error =
           "Impossible de modifier l'état de l'utilisateur. \n" +
           error.response.data.detail;

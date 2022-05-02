@@ -2,15 +2,11 @@ import store from "@/store";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
+  /* routeur home */
   {
     path: "/",
     name: "home",
     component: () => import("@/views/home/HomeView"),
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/login/LoginView"),
   },
   {
     path: "/home",
@@ -18,6 +14,13 @@ const routes = [
     meta: { requiresAuth: true },
     component: () => import("@/views/home/HomeUserView"),
   },
+  /* routeur login */
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/login/LoginView"),
+  },
+  /* routeur user */
   {
     path: "/users",
     name: "listUser",
@@ -43,6 +46,12 @@ const routes = [
     component: () => import("@/views/profile/ProfileView"),
   },
   {
+    path: "/users/confirmation/:token",
+    name: "userConfirmation",
+    component: () => import("@/views/users/ConfirmUserView"),
+  },
+  /* routeur categorie */
+  {
     path: "/categories",
     name: "listCategory",
     meta: { layout: "side-menu", requiresAuth: true },
@@ -60,6 +69,7 @@ const routes = [
     meta: { layout: "side-menu", requiresAuth: true },
     component: () => import("@/views/categories/EditCategoryView"),
   },
+  /* routeur  */
   {
     path: "/jobs",
     name: "listJob",

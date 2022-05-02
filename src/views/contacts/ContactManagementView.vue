@@ -23,7 +23,7 @@
             <a
               v-if="contact.coverLetterUrl"
               :href="
-                'https://127.0.0.1:8000/images/contacts/' +
+                'https://localhost:8000/images/contacts/' +
                 contact.coverLetterUrl
               "
               target="_blank"
@@ -31,7 +31,7 @@
             >/
             <a
               v-if="contact.cvUrl"
-              :href="'https://127.0.0.1:8000/images/contacts/' + contact.cvUrl"
+              :href="'https://localhost:8000/images/contacts/' + contact.cvUrl"
               target="_blank"
               >CV</a
             >
@@ -308,7 +308,7 @@
           </h3>
           <div class="col-lg-12 bg-primary mx-auto shadow">
             <iframe
-              src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23039BE5&ctz=Europe%2FParis&title=YPSI%20CLOUD%20RH&src=YWxleGlzYm90ZGV2QGdtYWlsLmNvbQ"
+              src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23039BE5&ctz=Europe%2FParis&mode=MONTH&src=eXBzaS5jbG91ZC5yaEBnbWFpbC5jb20&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=ZnIuZnJlbmNoI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679&color=%230B8043"
               width="100%"
               height="600"
             ></iframe>
