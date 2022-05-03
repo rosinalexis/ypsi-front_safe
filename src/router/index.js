@@ -160,6 +160,11 @@ const routes = [
     component: () => import("../views/mailConfiguration/EditEmailTemplateView"),
   },
   {
+    path: "/validate/date/:id/:uid",
+    name: "validateMeetingDate",
+    component: () => import("../views/users/MeetingDateUserView"),
+  },
+  {
     path: "/404",
     component: () => import("@/views/errorsPages/NotFoundView"),
   },
