@@ -144,6 +144,12 @@ const routes = [
     component: () => import("@/views/establishment/AddEstablishmentView"),
   },
   {
+    path: "/establishment/edit/:id",
+    name: "editEstablishment",
+    meta: { layout: "side-menu", requiresAuth: true },
+    component: () => import("@/views/establishment/EditEstablishmentView"),
+  },
+  {
     path: "/administration",
     name: "administration",
     meta: { layout: "side-menu", requiresAuth: true },

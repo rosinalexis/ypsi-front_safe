@@ -51,6 +51,15 @@
                 <td>{{ establishmentApp.region }}</td>
 
                 <td v-if="isAdmin">
+                  <router-link
+                    :to="{
+                      name: 'editEstablishment',
+                      params: { id: establishmentApp.id },
+                    }"
+                    class="my-1 mx-1 btn btn-primary"
+                  >
+                    <i class="bi bi-pencil-square text-white"></i>
+                  </router-link>
                   <button
                     class="my-1 mx-1 btn btn-primary"
                     @click="deleteEstablishment(establishmentApp)"
