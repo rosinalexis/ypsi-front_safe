@@ -58,14 +58,31 @@
                 class="form-select"
                 multiple
                 id="etablishment"
+                @change="getJobList"
               >
                 <option disabled value="">Choisissez</option>
+
                 <option
                   v-for="establishment in establishmentList"
                   :key="establishment.id"
-                  :value="'api/establishments/' + establishment.id"
+                  :value="establishment.id"
                 >
                   {{ establishment.name }}
+                </option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="job" class="form-label">
+                Poste de l'utilisateur:
+              </label>
+              <select v-model="preJob" class="form-select" id="poste">
+                <option value="">Retirer le poste</option>
+                <option
+                  v-for="job in jobList"
+                  :key="job.id"
+                  :value="'api/jobs/' + job.id"
+                >
+                  {{ job.title }}
                 </option>
               </select>
             </div>
@@ -114,12 +131,14 @@ export default {
         email: "",
         isActiveted: null,
         roles: [],
-        password: "",
+        job: null,
         establishment: [],
       },
       establishmentList: [],
+      jobList: [],
       currentUserId: this.$route.params.id,
       preRole: "",
+      preJob: "",
       preEstablishment: [],
       error: "",
       success: "",
@@ -142,6 +161,10 @@ export default {
         if (response.status === 200) {
           this.currentUser = await response.data;
           this.preRole = await this.currentUser.roles[0];
+
+          if (this.currentUser.job) {
+            this.preJob = "api/jobs/" + this.currentUser.job.id;
+          }
         }
       } catch (error) {
         this.error = "l'utilisateur est introuvable.";
@@ -159,8 +182,14 @@ export default {
         this.currentUser.establishment = [];
 
         this.preEstablishment.forEach((element) => {
-          this.currentUser.establishment.push(element);
+          this.currentUser.establishment.push("api/establishments/" + element);
         });
+
+        this.currentUser.job = this.preJob;
+
+        if (!this.preJob) {
+          this.currentUser.job = null;
+        }
 
         //enoyer la requête
         const response = await axios.put(
@@ -186,6 +215,23 @@ export default {
         }
       } catch (error) {
         this.error = "Impossible de récupérer la liste des établissements.";
+      }
+    },
+    async getJobList() {
+      try {
+        this.jobList = [];
+        const response = await axios.get("jobs");
+        if (response.status === 200) {
+          response.data.forEach((job) => {
+            this.preEstablishment.forEach((etablishmentId) => {
+              if (etablishmentId === job.establishment.id && !job.user) {
+                this.jobList.push(job);
+              }
+            });
+          });
+        }
+      } catch (error) {
+        this.error = "Impossible de récupérer la liste des postes.";
       }
     },
   },

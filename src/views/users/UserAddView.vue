@@ -30,86 +30,23 @@
               <select v-model="preRole" class="form-select" id="roles">
                 <option disabled value="">Choisissez</option>
                 <option value="ROLE_USER">Utilisateur</option>
-                <option value="ROLE_ADMIN">Administration</option>
+                <option value="ROLE_ADMIN">Administrateur</option>
               </select>
             </div>
+
             <div class="mb-3">
-              <label for="etablissement" class="form-label">
-                établissement de l'utilisateur:
+              <label for="poste" class="form-label">
+                Poste de l'utilisateur:
                 <span class="text-danger">*</span>:
               </label>
-              <select
-                v-model="newUser.establishment"
-                class="form-select"
-                id="etablissement"
-              >
+              <select v-model="newUser.job" class="form-select" id="poste">
                 <option disabled value="">Choisissez</option>
-                <option
-                  v-for="establishment in establishmentList"
-                  :key="establishment.id"
-                  :value="establishment.id"
-                >
-                  {{ establishment.name }}
+                <option v-for="job in jobsList" :key="job.id" :value="job.id">
+                  {{ job.title }}
                 </option>
               </select>
             </div>
-            <div>
-              <div class="mb-3">
-                <button class="btn" @click.prevent="addJobToUser()">
-                  <p v-if="!newUser.job.hasJobToAdd" class="text-success">
-                    Ajouter un poste <i class="bi bi-briefcase-fill"></i>
-                  </p>
-                  <p v-else class="text-danger">
-                    Retirer le poste <i class="bi bi-briefcase-fill"></i>
-                  </p>
-                </button>
-              </div>
-              <div v-if="newUser.job.hasJobToAdd">
-                <div class="mb-3">
-                  <label for="poste" class="form-label">
-                    Libellé du Poste
-                    <span class="text-danger">*</span>:
-                  </label>
-                  <input
-                    v-model="newUser.job.title"
-                    type="text"
-                    class="form-control"
-                    id="poste"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="posteDescription" class="form-label">
-                    Description du Poste:
-                  </label>
-                  <textarea
-                    v-model="newUser.job.description"
-                    type="text"
-                    class="form-control"
-                    id="posteDescription"
-                  ></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="category" class="form-label">
-                    Catégorie Poste utilisateur:
-                    <span class="text-danger">*</span>:
-                  </label>
-                  <select
-                    v-model="newUser.job.category"
-                    class="form-select"
-                    id="category"
-                  >
-                    <option disabled value="">Choisissez</option>
-                    <option
-                      v-for="category in categoriesList"
-                      :key="category.id"
-                      :value="'api/categories/' + category.id"
-                    >
-                      {{ category.title }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
+
             <div>
               <div class="mb-3">
                 <button class="btn" @click.prevent="addProfileToUser()">
@@ -124,6 +61,7 @@
                   </p>
                 </button>
               </div>
+
               <div v-if="newUser.profile.hasProfileToAdd">
                 <div class="mb-3">
                   <label for="lastname" class="form-label">
@@ -149,6 +87,7 @@
                     id="firstname"
                   />
                 </div>
+
                 <div class="mb-3">
                   <label for="gender" class="form-label">
                     Genre l'utilisateur:
@@ -165,6 +104,7 @@
                     <option value="mademoiselle">mademoiselle</option>
                   </select>
                 </div>
+
                 <div class="mb-3">
                   <label for="phone" class="form-label">
                     Téléphone de l'utilisateur
@@ -214,6 +154,7 @@
                 </div>
               </div>
             </div>
+
             <div class="text-center">
               <button class="px-5 btn btn-success">Ajouter</button>
             </div>
@@ -264,12 +205,7 @@ export default {
         roles: [],
         password: "123456",
         establishment: "",
-        job: {
-          hasJobToAdd: false,
-          title: "",
-          description: "",
-          category: "",
-        },
+        job: "",
         profile: {
           hasProfileToAdd: false,
           lastname: "",
@@ -283,6 +219,7 @@ export default {
       },
       categoriesList: [],
       establishmentList: [],
+      jobsList: [],
       preRole: "",
       error: "",
       success: "",
@@ -296,14 +233,6 @@ export default {
     resetMessages() {
       this.error = "";
       this.success = "";
-    },
-    addJobToUser() {
-      this.newUser.job.hasJobToAdd = !this.newUser.job.hasJobToAdd;
-
-      //reset des informations
-      this.newUser.job.title = "";
-      this.newUser.job.description = "";
-      this.newUser.job.category = "";
     },
     addProfileToUser() {
       this.newUser.profile.hasProfileToAdd =
@@ -342,17 +271,13 @@ export default {
         userToAdd.roles[0] = this.newUser.roles[0];
         userToAdd.password = this.newUser.password;
         userToAdd.establishment.push(
-          "api/establishments/" + this.newUser.establishment
+          "api/establishments/" + this.user.currentEstablishment
         );
-        userToAdd.currentEstablishment = this.newUser.establishment;
+        userToAdd.currentEstablishment = this.user.currentEstablishment;
 
         //verification du poste
-        if (this.newUser.job.hasJobToAdd) {
-          userToAdd.job = {
-            title: this.newUser.job.title,
-            description: this.newUser.job.description,
-            category: this.newUser.job.category,
-          };
+        if (this.newUser.job) {
+          userToAdd.job = "api/jobs/" + this.newUser.job;
         } else {
           userToAdd.job = null;
         }
@@ -386,12 +311,7 @@ export default {
           this.newUser.roles = [];
           this.newUser.establishment = "";
           this.preRole = "";
-          this.newUser.job = {
-            hasJobToAdd: false,
-            title: "",
-            description: "",
-            category: "",
-          };
+          this.newUser.job = "";
           this.newUser.profile = {
             hasProfileToAdd: false,
             lastname: "",
@@ -402,6 +322,7 @@ export default {
             birthdate: "",
             description: "",
           };
+          await this.$router.push("/users");
         }
       } catch (error) {
         if (error.message) {
@@ -438,10 +359,30 @@ export default {
         this.error = "Impossible de récupérer la liste des établissements.";
       }
     },
+    async getJobList() {
+      try {
+        const response = await axios.get("jobs");
+        if (response.status === 200) {
+          response.data.forEach((job) => {
+            if (
+              this.user.currentEstablishment === job.establishment.id &&
+              !job.user
+            ) {
+              this.jobsList.push(job);
+            }
+          });
+        }
+      } catch (error) {
+        this.error = "Impossible de récupérer la liste des établissements.";
+      }
+    },
   },
   async created() {
     //récuperation de la liste de catégorie
     await this.getCategoriesList();
+
+    //récuperation de la liste des postes
+    await this.getJobList();
 
     //récuperation de la liste des établissements
     await this.getEstablishmentList();

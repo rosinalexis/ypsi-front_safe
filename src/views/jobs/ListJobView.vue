@@ -30,13 +30,16 @@
             <tr v-for="jobApp in filteredJobs" :key="jobApp.id">
               <td>{{ jobApp.title }}</td>
               <td>
-                <p v-if="jobApp.user">
-                  {{
-                    jobApp.user.profile.firstname +
-                    " " +
-                    jobApp.user.profile.lastname
-                  }}
-                </p>
+                <div v-if="jobApp.user">
+                  <p v-if="jobApp.user.profile">
+                    {{
+                      jobApp.user.profile.firstname +
+                      " " +
+                      jobApp.user.profile.lastname
+                    }}
+                  </p>
+                  <p v-else>Pas de profil</p>
+                </div>
                 <p v-else class="fst-italic">Pas d'utilisateur</p>
               </td>
               <td>

@@ -115,7 +115,10 @@ export default {
   computed: {
     filteredUsers: function () {
       return this.userList.filter((user) => {
-        return user.email.match(this.search);
+        return (
+          user.email.match(this.search) ||
+          (user.job ? user.job.title.match(this.search) : false)
+        );
       });
     },
     ...mapState(["user"]),
