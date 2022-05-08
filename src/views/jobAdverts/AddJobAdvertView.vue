@@ -38,7 +38,7 @@
 
           <div class="mb-3">
             <label for="contratType" class="form-label">
-              Type de contract:
+              Type de contrat:
             </label>
             <input
               v-model="jobAdvert.contractType"

@@ -20,7 +20,7 @@ const routes = [
     name: "login",
     component: () => import("@/views/login/LoginView"),
   },
-  /* routeur user */
+  /* routeur users */
   {
     path: "/users",
     name: "listUser",
@@ -50,7 +50,7 @@ const routes = [
     name: "userConfirmation",
     component: () => import("@/views/users/ConfirmUserView"),
   },
-  /* routeur categorie */
+  /* routeur categories */
   {
     path: "/categories",
     name: "listCategory",
@@ -69,7 +69,7 @@ const routes = [
     meta: { layout: "side-menu", requiresAuth: true },
     component: () => import("@/views/categories/EditCategoryView"),
   },
-  /* routeur  */
+  /* routeur  jobs */
   {
     path: "/jobs",
     name: "listJob",
@@ -77,11 +77,18 @@ const routes = [
     component: () => import("@/views/jobs/ListJobView"),
   },
   {
+    path: "/jobs",
+    name: "addJob",
+    meta: { layout: "side-menu", requiresAuth: true },
+    component: () => import("@/views/jobs/AddJobView"),
+  },
+  {
     path: "/jobs/:id/edit",
     name: "editJob",
     meta: { layout: "side-menu", requiresAuth: true },
     component: () => import("@/views/jobs/EditJobView"),
   },
+  /* routeur  jobAdverts */
   {
     path: "/jobsAdverts",
     name: "listJobAdvert",
@@ -105,6 +112,7 @@ const routes = [
     name: "listUserJobAdvert",
     component: () => import("@/views/jobAdverts/ListHomeJobAdvertView"),
   },
+  /* routeur  contacts */
   {
     path: "/contacts",
     name: "listContact",
@@ -122,7 +130,7 @@ const routes = [
     meta: { requiresAuth: true },
     component: () => import("@/views/contacts/ContactManagementView"),
   },
-
+  /* routeur  establishments */
   {
     path: "/establishment/list",
     name: "listEstablishment",

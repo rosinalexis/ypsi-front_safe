@@ -20,6 +20,7 @@
           <thead class="sticky-top table-primary">
             <tr>
               <th>Intitulé</th>
+              <th>Utilisateur</th>
               <th>Catégorie</th>
               <th>Date de création</th>
               <th v-if="this.user.roles[0] === 'ROLE_ADMIN'">Actions</th>
@@ -28,6 +29,16 @@
           <tbody>
             <tr v-for="jobApp in filteredJobs" :key="jobApp.id">
               <td>{{ jobApp.title }}</td>
+              <td>
+                <p v-if="jobApp.user">
+                  {{
+                    jobApp.user.profile.firstname +
+                    " " +
+                    jobApp.user.profile.lastname
+                  }}
+                </p>
+                <p v-else class="fst-italic">Pas d'utilisateur</p>
+              </td>
               <td>
                 <p v-if="jobApp.category">{{ jobApp.category.title }}</p>
                 <p v-else class="fst-italic">Pas de categorie</p>
@@ -42,6 +53,12 @@
                 >
                   <i class="bi bi-pencil-square text-white"></i>
                 </router-link>
+                <button
+                  class="my-1 mx-1 btn btn-primary"
+                  @click="deleteJob(jobApp.id)"
+                >
+                  <i class="bi bi-trash-fill"></i>
+                </button>
               </td>
             </tr>
           </tbody>
@@ -54,6 +71,15 @@
         <div class="col">
           <router-link to="/administration" class="px-4 btn btn-danger">
             Retour <i class="bi bi-back"></i>
+          </router-link>
+          <router-link
+            :to="{
+              name: 'addJob',
+            }"
+            class="px-4 mx-2 btn btn-primary"
+          >
+            Ajouter un poste
+            <i class="bi bi-back"></i>
           </router-link>
         </div>
       </div>
@@ -91,6 +117,10 @@ export default {
   },
 
   methods: {
+    resetMessages() {
+      this.errors = "";
+      this.success = "";
+    },
     async getJobsList() {
       try {
         //TODO: faire une requête filter via API Platform
@@ -98,12 +128,9 @@ export default {
         if (response.status === 200) {
           //insertion dans la liste
           response.data.forEach((job) => {
-            //filtre ne je récuperes que les postes dans l'établissement courrant
-            job.user.establishment.forEach((establishment) => {
-              if (this.user.currentEstablishment === establishment.id) {
-                this.jobsList.push(job);
-              }
-            });
+            if (job.establishment.id === this.user.currentEstablishment) {
+              this.jobsList.push(job);
+            }
           });
         }
 
@@ -111,7 +138,33 @@ export default {
         this.loading = false;
       } catch (error) {
         this.loading = false;
-        this.errors = "Impossible de récupérer la liste des catégories.";
+        this.errors = "Impossible de récupérer la liste des postes.";
+      }
+    },
+    async deleteJob(id) {
+      try {
+        //activation du loading...
+        this.loading = true;
+        if (confirm("Voulez-vous vraiment supprimer ce poste ? ")) {
+          //reset des messages
+          this.resetMessages();
+
+          //envoyer la requête à l'utilisateur
+          const response = await axios.delete("jobs/" + id);
+
+          //attendre la réponse
+          if (response.status === 204) {
+            this.success = "le poste a été supprimé.";
+            //reset de la liste
+            this.jobsList = [];
+            await this.getJobsList();
+          }
+        }
+        //désactivation du Loading ...
+        this.loading = false;
+      } catch (error) {
+        this.loading = false;
+        this.errors = "Impossible de supprimer  l'utilisateurs.";
       }
     },
   },

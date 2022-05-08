@@ -153,7 +153,9 @@ export default {
 
         //insertion dans la liste
         response.data.forEach((category) => {
-          this.categoriesList.push(category);
+          if (this.user.currentEstablishment === category.establishment.id) {
+            this.categoriesList.push(category);
+          }
         });
 
         //désactivation du message
