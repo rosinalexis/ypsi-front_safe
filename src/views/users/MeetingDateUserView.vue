@@ -42,7 +42,7 @@ export default {
         //reset des messages
         this.resetMessages();
 
-        axios.defaults.baseURL = "https://localhost:8000/";
+        axios.defaults.baseURL = "https://api-cloud-rh.ypsi.dev/";
         const response = await axios.get(
           "validate/date/" + this.contactId + "/" + this.dateUid
         );

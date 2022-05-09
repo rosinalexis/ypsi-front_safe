@@ -23,7 +23,7 @@
             <a
               v-if="contact.coverLetterUrl"
               :href="
-                'https://localhost:8000/images/contacts/' +
+                'https://api-cloud-rh.ypsi.dev/images/contacts/' +
                 contact.coverLetterUrl
               "
               target="_blank"
@@ -31,7 +31,9 @@
             >/
             <a
               v-if="contact.cvUrl"
-              :href="'https://localhost:8000/images/contacts/' + contact.cvUrl"
+              :href="
+                'https://api-cloud-rh.ypsi.dev/images/contacts/' + contact.cvUrl
+              "
               target="_blank"
               >CV</a
             >

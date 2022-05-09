@@ -97,7 +97,7 @@ export default {
           data.append("new_password_first", this.new_password_first);
           data.append("new_password_second", this.new_password_second);
 
-          axios.defaults.baseURL = "https://localhost:8000";
+          axios.defaults.baseURL = "https://api-cloud-rh.ypsi.dev/";
           const response = await axios.post(
             "/confirm-user/" + this.token,
             data
