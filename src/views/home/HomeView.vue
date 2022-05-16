@@ -124,13 +124,13 @@
           <ul class="list-group mt-4">
             <li class="list-group-item border-0">
               <div class="row">
-                <div class="col-lg-2 mt-3">
+                <div class="col-lg-2 my-3">
                   <i
                     class="bi bi-geo-alt-fill bg-primary p-3 rounded-circle text-white"
                   ></i>
                 </div>
                 <div class="col-lg-10">
-                  <p>
+                  <p class="mt-3">
                     <strong>Localisation:</strong>
                     8B rue de la Mairie, 79330 Glénay
                   </p>
@@ -139,13 +139,13 @@
             </li>
             <li class="list-group-item border-0">
               <div class="row">
-                <div class="col-lg-2 my-2">
+                <div class="col-lg-2 my-3">
                   <i
                     class="bi bi-envelope bg-primary p-3 rounded-circle text-white"
                   ></i>
                 </div>
                 <div class="col-lg-10">
-                  <p class="mt-1 px-1">
+                  <p class="mt-3 px-1">
                     <strong>Email:</strong>
                     info@ypsi.fr
                   </p>
