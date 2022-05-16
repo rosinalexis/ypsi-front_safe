@@ -13,13 +13,15 @@
         </div>
 
         <div v-else class="row">
-          <div class="col-lg-3">
-            <input
-              type="text"
-              class="form-control"
-              v-model="search"
-              placeholder="rechercher une offre d'emploi"
-            />
+          <div class="col-12">
+            <div class="my-4 col-lg-4">
+              <input
+                type="text"
+                class="form-control"
+                v-model="search"
+                placeholder="Rechercher une offre d'emploi"
+              />
+            </div>
           </div>
           <div
             v-for="jobAdvert in filteredJob"
