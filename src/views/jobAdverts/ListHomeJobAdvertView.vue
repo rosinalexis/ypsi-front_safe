@@ -13,8 +13,16 @@
         </div>
 
         <div v-else class="row">
+          <div class="col-lg-3">
+            <input
+              type="text"
+              class="form-control"
+              v-model="search"
+              placeholder="rechercher une offre d'emploi"
+            />
+          </div>
           <div
-            v-for="jobAdvert in jobAdverts"
+            v-for="jobAdvert in filteredJob"
             :key="jobAdvert.id"
             class="my-5 col-lg-6"
           >
@@ -56,7 +64,17 @@ export default {
       jobAdverts: [],
       errors: null,
       loading: true,
+      search: "",
     };
+  },
+  computed: {
+    filteredJob: function () {
+      return this.jobAdverts.filter((job) => {
+        return (
+          job.title.match(this.search) || job.contractType.match(this.search)
+        );
+      });
+    },
   },
   methods: {
     async findJobsAdverts() {
