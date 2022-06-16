@@ -11,7 +11,7 @@
 
         <div class="mb-5">
           <a
-            href="https://api-cloud-rh.ypsi.dev/api/docs?ui=re_doc"
+            :href="`${process.env.VUE_APP_HTTP_API_URL}docs?ui=re_doc`"
             class="btn btn-primary px-4 text-white"
             disabled
             >Utilisation
@@ -204,6 +204,7 @@ export default {
     return {
       jobAdverts: [],
       errors: null,
+      api_url: process.env.VUE_APP_HTTP_API_URL,
     };
   },
 

@@ -22,18 +22,13 @@
             <strong>Cv et Lettre de motivation : </strong>
             <a
               v-if="contact.coverLetterUrl"
-              :href="
-                'https://api-cloud-rh.ypsi.dev/images/contacts/' +
-                contact.coverLetterUrl
-              "
+              :href="contact.coverLetterUrl"
               target="_blank"
               >LM</a
             >/
             <a
               v-if="contact.cvUrl"
-              :href="
-                'https://api-cloud-rh.ypsi.dev/images/contacts/' + contact.cvUrl
-              "
+              :href="contact.cvUrl"
               target="_blank"
               >CV</a
             >

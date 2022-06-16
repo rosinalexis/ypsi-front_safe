@@ -44,10 +44,7 @@
                 <td>
                   <a
                     v-if="contactApp.cvUrl"
-                    :href="
-                      'https://localhost:8000/images/contacts/' +
-                      contactApp.cvUrl
-                    "
+                    :href="contactApp.cvUrl"
                     target="_blank"
                   >
                     CV
@@ -57,10 +54,7 @@
                 <td>
                   <a
                     v-if="contactApp.coverLetterUrl"
-                    :href="
-                      'https://localhost:8000/images/contacts/' +
-                      contactApp.coverLetterUrl
-                    "
+                    :href="contactApp.coverLetterUrl"
                     target="_blank"
                   >
                     LM
