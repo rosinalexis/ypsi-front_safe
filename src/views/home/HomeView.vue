@@ -11,10 +11,10 @@
 
         <div class="mb-5">
           <a
-            :href="`${process.env.VUE_APP_HTTP_API_URL}docs?ui=re_doc`"
+            :href="api_url + '/docs?ui=re_doc'"
             class="btn btn-primary px-4 text-white"
-            disabled
-            >Utilisation
+          >
+            Utilisation
           </a>
           <a href="https://www.ypsi.fr/" class="mx-2 btn btn-warning text-white"
             >Site officiel</a

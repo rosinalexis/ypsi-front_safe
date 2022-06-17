@@ -26,12 +26,7 @@
               target="_blank"
               >LM</a
             >/
-            <a
-              v-if="contact.cvUrl"
-              :href="contact.cvUrl"
-              target="_blank"
-              >CV</a
-            >
+            <a v-if="contact.cvUrl" :href="contact.cvUrl" target="_blank">CV</a>
           </p>
           <p>
             <strong>Date de la candidature : </strong>
