@@ -11,7 +11,7 @@
 
         <div class="mb-5">
           <a
-            :href="api_url + '/docs?ui=re_doc'"
+            :href="api_url + '/api/docs?ui=re_doc'"
             class="btn btn-primary px-4 text-white"
           >
             Utilisation
