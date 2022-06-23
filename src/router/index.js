@@ -179,6 +179,11 @@ const routes = [
     component: () => import("../views/users/MeetingDateUserView"),
   },
   {
+    path: "/settings/add/admin/user",
+    name: "addAdminUser",
+    component: () => import("../views/administration/AddAdminUserView"),
+  },
+  {
     path: "/404",
     component: () => import("@/views/errorsPages/NotFoundView"),
   },

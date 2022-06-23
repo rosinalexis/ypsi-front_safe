@@ -21,12 +21,17 @@
           <p>
             <strong>Cv et Lettre de motivation : </strong>
             <a
-              v-if="contact.coverLetterUrl"
-              :href="contact.coverLetterUrl"
+              v-if="contact.coverLetterFileUrl"
+              :href="contact.coverLetterFileUrl"
               target="_blank"
               >LM</a
             >/
-            <a v-if="contact.cvUrl" :href="contact.cvUrl" target="_blank">CV</a>
+            <a
+              v-if="contact.cvFileUrl"
+              :href="contact.cvFileUrl"
+              target="_blank"
+              >CV</a
+            >
           </p>
           <p>
             <strong>Date de la candidature : </strong>
@@ -747,9 +752,9 @@ export default {
         lastName: "",
         email: "",
         subject: "",
-        cvUrl: "",
         cvFileUrl: "",
-        coverLetterUrl: "",
+        cvFileName: "",
+        coverLetterName: "",
         coverLetterFileUrl: "",
         message: "",
         management: {

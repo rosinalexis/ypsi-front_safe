@@ -346,7 +346,6 @@ export default {
         this.error = "Impossible de récupérer la liste des catégories.";
       }
     },
-
     async getEstablishmentList() {
       try {
         const response = await axios.get("establishments");

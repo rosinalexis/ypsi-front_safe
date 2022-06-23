@@ -43,8 +43,8 @@
                 <td>{{ contactApp.email }}</td>
                 <td>
                   <a
-                    v-if="contactApp.cvUrl"
-                    :href="contactApp.cvUrl"
+                    v-if="contactApp.cvFileUrl"
+                    :href="contactApp.cvFileUrl"
                     target="_blank"
                   >
                     CV
@@ -53,8 +53,8 @@
                 </td>
                 <td>
                   <a
-                    v-if="contactApp.coverLetterUrl"
-                    :href="contactApp.coverLetterUrl"
+                    v-if="contactApp.coverLetterFileUrl"
+                    :href="contactApp.coverLetterFileUrl"
                     target="_blank"
                   >
                     LM
