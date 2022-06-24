@@ -13,7 +13,7 @@
             <label for="email">Email :</label>
             <input
               class="form-control"
-              type="text"
+              type="email"
               name="email"
               id="email"
               v-model="user.email"
@@ -38,6 +38,7 @@
               type="password"
               name="confirmPassword"
               id="confirmPassword"
+              v-model="user.confirmPassword"
               required
             />
           </div>
@@ -55,6 +56,7 @@
 <script>
 import SuccessComponent from "@/components/notifications/SuccessComponent";
 import ErrorComponent from "@/components/notifications/ErrorComponent";
+import axios from "axios";
 
 export default {
   name: "AddAdminUserView",
@@ -64,17 +66,52 @@ export default {
       user: {
         email: "",
         password: "",
+        confirmPassword: "",
       },
       error: "",
       success: "",
     };
   },
   methods: {
-    addAdminUser() {
-      if (!this.user.email && !this.user.password) {
-        this.error = "un des champs est vide.";
-      } else {
-        this.success = "L'utilisateur a été créé";
+    resetMessages() {
+      this.error = "";
+      this.success = "";
+    },
+    async addAdminUser() {
+      try {
+        this.resetMessages();
+        this.checkUserInfo();
+        axios.defaults.baseURL = `${process.env.VUE_APP_HTTP_API_URL}`;
+
+        let data = new FormData();
+        data.append("email", this.user.email);
+        data.append("password", this.user.password);
+        data.append("confirmPassword", this.user.confirmPassword);
+
+        const httpClient = axios.create({
+          baseURL: `${process.env.VUE_APP_HTTP_API_URL}`,
+        });
+
+        const response = await httpClient.post("/add/admin/user", data);
+
+        if (response.status === 201) {
+          this.success = "Ajout de l'administrateur ok.";
+          await this.$router.push("/login");
+        }
+      } catch (e) {
+        this.error = e.response.data.detail;
+      }
+    },
+    checkUserInfo() {
+      if (
+        !this.user.email ||
+        !this.user.password ||
+        !this.user.confirmPassword ||
+        this.user.confirmPassword !== this.user.password
+      ) {
+        throw new Error(
+          "Un des champs est vide ou les mots de passe ne sont pas identiques."
+        );
       }
     },
   },

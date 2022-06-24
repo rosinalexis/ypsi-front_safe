@@ -754,7 +754,7 @@ export default {
         subject: "",
         cvFileUrl: "",
         cvFileName: "",
-        coverLetterName: "",
+        coverLetterFileName: "",
         coverLetterFileUrl: "",
         message: "",
         management: {

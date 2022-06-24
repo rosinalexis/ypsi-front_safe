@@ -86,8 +86,6 @@ export default {
     },
     async handleSubmit() {
       try {
-        console.log("click");
-        console.log(process.env.HTTP_API_URL);
         //reset des messages
         this.resetMessages();
 
@@ -97,8 +95,11 @@ export default {
           data.append("new_password_first", this.new_password_first);
           data.append("new_password_second", this.new_password_second);
 
-          axios.defaults.baseURL = "https://api-cloud-rh.ypsi.dev/";
-          const response = await axios.post(
+          const httpClient = axios.create({
+            baseURL: `${process.env.VUE_APP_HTTP_API_URL}`,
+          });
+
+          const response = await httpClient.post(
             "/confirm-user/" + this.token,
             data
           );
